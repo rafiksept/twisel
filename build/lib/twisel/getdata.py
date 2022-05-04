@@ -85,9 +85,9 @@ class SearchTwitter:
 
             while True:
                 huruf = WebDriverWait(driver, 30).until(EC.visibility_of_element_located((By.CSS_SELECTOR, '.css-1dbjc4n article')))
-                temukan = driver.find_elements(By.CSS_SELECTOR,'.css-1dbjc4n .css-901oao.r-18jsvk2.r-37j5jr.r-a023e6.r-16dba41.r-rjixqe.r-bcqeeo.r-bnwqim.r-qvutc0')
-                nama = driver.find_elements(By.CSS_SELECTOR,'.css-901oao.r-1awozwy.r-18jsvk2.r-6koalj.r-37j5jr.r-a023e6.r-b88u0q.r-rjixqe.r-bcqeeo.r-1udh08x.r-3s2u2q.r-qvutc0')
-                username = driver.find_elements(By.CSS_SELECTOR,'.css-901oao.css-bfa6kz.r-14j79pv.r-18u37iz.r-37j5jr.r-a023e6.r-16dba41.r-rjixqe.r-bcqeeo.r-qvutc0 .css-901oao.css-16my406.r-poiln3.r-bcqeeo.r-qvutc0')
+                temukan = driver.find_elements(By.CSS_SELECTOR,'article .css-1dbjc4n .css-901oao.r-18jsvk2.r-37j5jr.r-a023e6.r-16dba41.r-rjixqe.r-bcqeeo.r-bnwqim.r-qvutc0')
+                nama = driver.find_elements(By.CSS_SELECTOR,'article .css-901oao.r-1awozwy.r-18jsvk2.r-6koalj.r-37j5jr.r-a023e6.r-b88u0q.r-rjixqe.r-bcqeeo.r-1udh08x.r-3s2u2q.r-qvutc0')
+                username = driver.find_elements(By.CSS_SELECTOR,'article .css-901oao.css-bfa6kz.r-14j79pv.r-18u37iz.r-37j5jr.r-a023e6.r-16dba41.r-rjixqe.r-bcqeeo.r-qvutc0 .css-901oao.css-16my406.r-poiln3.r-bcqeeo.r-qvutc0')
                 times = driver.find_elements(By.TAG_NAME, 'time')
 
                 if len(kata) > self.tweets:
@@ -119,3 +119,8 @@ class SearchTwitter:
             return kata[:self.tweets]
 
 
+hallo = SearchTwitter()
+hallo.PATH = r'C:\Users\RAFIK\Downloads\chromedriver_win32/chromedriver'
+hallo.keyword = 'jokowi'
+hasil = hallo.search()
+print(hasil)
