@@ -71,4 +71,4 @@ ekspor.save_csv(result, 'output')
 
 save_csv(result, 'output')
 
-result is variabel from scrap.search() and output is name scrap file in our directory.
+result is variabel from scrap.search() and output is the name of the file to be stored in the directory.
