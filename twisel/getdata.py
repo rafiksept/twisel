@@ -117,10 +117,3 @@ class SearchTwitter:
 
 
             return kata[:self.tweets]
-
-
-hallo = SearchTwitter()
-hallo.PATH = r'C:\Users\RAFIK\Downloads\chromedriver_win32/chromedriver'
-hallo.keyword = 'jokowi'
-hasil = hallo.search()
-print(hasil)
