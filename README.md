@@ -45,7 +45,7 @@ result = scrap.search()
     - default : ''
     - option  : 'YYYY-MM-DD'
     
-- .populer    : get populer tweeter (bool)
+- .populer    : get populer tweet (bool)
     - default : True
     - option  : False (get lastest tweet)
     
