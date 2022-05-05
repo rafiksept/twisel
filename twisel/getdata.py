@@ -99,14 +99,13 @@ class SearchTwitter:
 
 
                 last_height = driver.execute_script("return document.body.scrollHeight")
-                if int(layar) - 720  == int(last_height) :
+                if int(layar)   == int(last_height) :
                     driver.close()
                     break
 
-
-                layar = int(last_height) + 720
                 driver.execute_script(f"window.scrollTo(0, {layar});")
                 time.sleep(0.5)
+                layar = int(last_height) + 720
 
             val = []
             for i in kata:
@@ -117,3 +116,4 @@ class SearchTwitter:
 
 
             return kata[:self.tweets]
+

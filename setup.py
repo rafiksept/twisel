@@ -3,7 +3,7 @@ from setuptools import find_packages, setup
 setup(
     name = 'twisel',
     packages=find_packages(include=['twisel']),
-    version='0.1.6',
+    version='0.1.8',
     description='Library for scraping twitter with selenium',
     author='rafiksept',
     license='MIT',
