@@ -1,4 +1,4 @@
-# twisel
+# twisel - TWITTER SELENIUM API
 library python for scraping twitter without API. 
 
 ## Details 
