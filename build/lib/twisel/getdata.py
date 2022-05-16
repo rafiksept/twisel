@@ -59,6 +59,9 @@ class SearchTwitter:
 
         return src
 
+    def setTweets(self):
+      return self.tweets
+
 
     def getDriver(self):
 
@@ -81,16 +84,19 @@ class SearchTwitter:
             driver.get(f'https://twitter.com/search?q={self.setKeyword()}{self.setUntil()}{self.setSince()}&src={self.setSrc()}{self.setPopuler()}')
             kata = []
             layar = 0
+            make_sure = 0
 
 
             while True:
+                loading = WebDriverWait(driver, 30).until(EC.invisibility_of_element_located((By.CSS_SELECTOR, 'svg[style="stroke: rgb(29, 155, 240); opacity: 0.2;"]')))
                 huruf = WebDriverWait(driver, 30).until(EC.visibility_of_element_located((By.CSS_SELECTOR, '.css-1dbjc4n article')))
-                temukan = driver.find_elements(By.CSS_SELECTOR,'article .css-1dbjc4n .css-901oao.r-18jsvk2.r-37j5jr.r-a023e6.r-16dba41.r-rjixqe.r-bcqeeo.r-bnwqim.r-qvutc0')
-                nama = driver.find_elements(By.CSS_SELECTOR,'article .css-901oao.r-1awozwy.r-18jsvk2.r-6koalj.r-37j5jr.r-a023e6.r-b88u0q.r-rjixqe.r-bcqeeo.r-1udh08x.r-3s2u2q.r-qvutc0')
-                username = driver.find_elements(By.CSS_SELECTOR,'article .css-901oao.css-bfa6kz.r-14j79pv.r-18u37iz.r-37j5jr.r-a023e6.r-16dba41.r-rjixqe.r-bcqeeo.r-qvutc0 .css-901oao.css-16my406.r-poiln3.r-bcqeeo.r-qvutc0')
+                temukan = driver.find_elements(By.CSS_SELECTOR,'article .css-1dbjc4n .r-37j5jr.r-a023e6.r-16dba41.r-rjixqe.r-bcqeeo.r-bnwqim.r-qvutc0')
+                nama = driver.find_elements(By.CSS_SELECTOR,'article .css-901oao.r-1awozwy.r-6koalj.r-37j5jr.r-a023e6.r-b88u0q.r-rjixqe.r-bcqeeo.r-1udh08x.r-3s2u2q.r-qvutc0')
+                username = driver.find_elements(By.CSS_SELECTOR,'article .css-901oao.css-bfa6kz.r-18u37iz.r-37j5jr.r-a023e6.r-16dba41.r-rjixqe.r-bcqeeo.r-qvutc0 .css-901oao.css-16my406.r-poiln3.r-bcqeeo.r-qvutc0')
                 times = driver.find_elements(By.TAG_NAME, 'time')
 
-                if len(kata) > self.tweets:
+
+                if len(kata) > self.setTweets():
                     break
 
                 for i, j, l, c  in zip(nama, temukan, username, times):
@@ -99,9 +105,16 @@ class SearchTwitter:
 
 
                 last_height = driver.execute_script("return document.body.scrollHeight")
-                if int(layar)   == int(last_height) :
-                    driver.close()
-                    break
+
+                if int(layar) == int(last_height) + 720 :
+                    if make_sure > 5:
+                        driver.close()
+                        break
+                    make_sure += 1
+                else:
+                    make_sure = 0
+
+
 
                 driver.execute_script(f"window.scrollTo(0, {layar});")
                 time.sleep(0.5)
@@ -109,11 +122,13 @@ class SearchTwitter:
 
             val = []
             for i in kata:
-                if i['tweet'] in val:
-                    kata.remove(i)
+                if i in val:
+                    continue
                 else:
-                    val.append(i['tweet'])
+                    val.append(i)
 
 
-            return kata[:self.tweets]
+            return val[:self.tweets]
+
+
 
