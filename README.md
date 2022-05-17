@@ -7,7 +7,7 @@ Twitter Api has limitation about time to get tweet, you can't get older tweets t
 ## twisel 0.1.10 Update
 - Scrap automatically stop when it reach the end of pages
 - Fix the css selector issue 
-- Remove Double Tweet in result
+- Remove Double Tweet in final result
 
 ## Get Started
 Before you use this library, you must download driver.exe according to your browser application and version. you can check this link: 
