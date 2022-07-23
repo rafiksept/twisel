@@ -19,6 +19,7 @@ class SearchTwitter:
         self.since = ''
         self.populer = True
         self.tweets = 100
+        self.lang = "en"
 
     def setKeyword(self):
         spliting = self.keyword.split()
@@ -62,6 +63,10 @@ class SearchTwitter:
     def setTweets(self):
       return self.tweets
 
+    def setLang(self):
+        return f'%20lang%3A{self.lang}'
+
+
 
     def getDriver(self):
 
@@ -81,7 +86,7 @@ class SearchTwitter:
             raise CustomError('Keyword not Valid!')
         else:
             driver = self.getDriver()
-            driver.get(f'https://twitter.com/search?q={self.setKeyword()}{self.setUntil()}{self.setSince()}&src={self.setSrc()}{self.setPopuler()}')
+            driver.get(f'https://twitter.com/search?q={self.setKeyword()}{self.setLang()}{self.setUntil()}{self.setSince()}&src={self.setSrc()}{self.setPopuler()}')
             kata = []
             layar = 0
             make_sure = 0
