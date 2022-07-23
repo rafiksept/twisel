@@ -6,6 +6,7 @@ import warnings
 warnings.filterwarnings("ignore")
 import time
 
+
 class CustomError(Exception):
     pass
 
@@ -18,7 +19,7 @@ class SearchTwitter:
         self.until = ''
         self.since = ''
         self.populer = True
-        self.tweets = 100
+        self.tweets = 10000
         self.lang = "en"
 
     def setKeyword(self):
@@ -93,20 +94,37 @@ class SearchTwitter:
 
 
             while True:
+
                 loading = WebDriverWait(driver, 30).until(EC.invisibility_of_element_located((By.CSS_SELECTOR, 'svg[style="stroke: rgb(29, 155, 240); opacity: 0.2;"]')))
                 huruf = WebDriverWait(driver, 30).until(EC.visibility_of_element_located((By.CSS_SELECTOR, '.css-1dbjc4n article')))
                 temukan = driver.find_elements(By.CSS_SELECTOR,'article .css-1dbjc4n .r-37j5jr.r-a023e6.r-16dba41.r-rjixqe.r-bcqeeo.r-bnwqim.r-qvutc0')
                 nama = driver.find_elements(By.CSS_SELECTOR,'article .css-901oao.r-1awozwy.r-6koalj.r-37j5jr.r-a023e6.r-b88u0q.r-rjixqe.r-bcqeeo.r-1udh08x.r-3s2u2q.r-qvutc0')
                 username = driver.find_elements(By.CSS_SELECTOR,'article .css-901oao.css-1hf3ou5.r-14j79pv.r-18u37iz.r-37j5jr.r-a023e6.r-16dba41.r-rjixqe.r-bcqeeo.r-qvutc0 .css-901oao.css-16my406.r-poiln3.r-bcqeeo.r-qvutc0')
+                waktu_tunggu = WebDriverWait(driver, 30).until(EC.visibility_of_element_located((By.TAG_NAME, 'time')))
                 times = driver.find_elements(By.TAG_NAME, 'time')
+
 
 
                 if len(kata) > self.setTweets():
                     break
 
-                for i, j, l, c  in zip(nama, temukan, username, times):
-                    jr = j.text.replace('\n', ' ')
-                    kata.append({'name': i.text,'username':l.text, 'tweet': jr,'time':c.get_attribute('datetime')})
+
+                for i, j,l, c  in zip(nama, temukan, username, times):
+                    try:
+                        jr = j.text.replace('\n', ' ')
+                        ir = i.text
+                        lr = l.text
+                        cr = c.get_attribute('datetime')
+                    except:
+                        jr = "Failed"
+                        ir = "Failed"
+                        lr = "Failed"
+                        cr = "Failed"
+
+
+                    kata.append({'name': ir,'username':lr, 'tweet': jr,'time':cr})
+
+
 
 
                 last_height = driver.execute_script("return document.body.scrollHeight")
@@ -137,13 +155,16 @@ class SearchTwitter:
 
 
 
-if __name__ == "__main__":
-    scrap = SearchTwitter()
-    scrap.PATH = r'C:\Users\RAFIK\Downloads\chromedriver_win32 (4)/chromedriver'  # PATH where you save driver.exe
-    scrap.keyword = 'bali'
-    scrap.until = '2022-07-20'
-    scrap.since = '2022-07-19'
-    # scrap.tweets = 10
-    scrap.populer = False
-    result = scrap.search()
-    print(len(result))
+# if __name__ == "__main__":
+#     scrap = SearchTwitter()
+#     scrap.PATH = r'C:\Users\RAFIK\Downloads\chromedriver_win32 (4)/chromedriver'  # PATH where you save driver.exe
+#     scrap.keyword = 'bali'
+#     scrap.until = '2022-07-20'
+#     scrap.since = '2022-07-19'
+#     scrap.tweets = 10000
+#     scrap.populer = False
+#     result = scrap.search()
+#
+#     ekspor = Exporter()
+#     ekspor.save_col = ['tweet']
+#     ekspor.save_csv(result, 'datagemastik')

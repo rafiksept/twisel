@@ -5,7 +5,7 @@ long_description = (this_directory / "README.md").read_text()
 setup(
     name = 'twisel',
     packages=find_packages(include=['twisel']),
-    version='0.1.12',
+    version='0.1.13',
     description='Library for scraping twitter with selenium',
     author='rafiksept',
     license='MIT',
