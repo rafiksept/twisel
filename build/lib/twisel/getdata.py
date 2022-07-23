@@ -97,7 +97,7 @@ class SearchTwitter:
                 huruf = WebDriverWait(driver, 30).until(EC.visibility_of_element_located((By.CSS_SELECTOR, '.css-1dbjc4n article')))
                 temukan = driver.find_elements(By.CSS_SELECTOR,'article .css-1dbjc4n .r-37j5jr.r-a023e6.r-16dba41.r-rjixqe.r-bcqeeo.r-bnwqim.r-qvutc0')
                 nama = driver.find_elements(By.CSS_SELECTOR,'article .css-901oao.r-1awozwy.r-6koalj.r-37j5jr.r-a023e6.r-b88u0q.r-rjixqe.r-bcqeeo.r-1udh08x.r-3s2u2q.r-qvutc0')
-                username = driver.find_elements(By.CSS_SELECTOR,'article .css-901oao.css-bfa6kz.r-18u37iz.r-37j5jr.r-a023e6.r-16dba41.r-rjixqe.r-bcqeeo.r-qvutc0 .css-901oao.css-16my406.r-poiln3.r-bcqeeo.r-qvutc0')
+                username = driver.find_elements(By.CSS_SELECTOR,'article .css-901oao.css-1hf3ou5.r-14j79pv.r-18u37iz.r-37j5jr.r-a023e6.r-16dba41.r-rjixqe.r-bcqeeo.r-qvutc0 .css-901oao.css-16my406.r-poiln3.r-bcqeeo.r-qvutc0')
                 times = driver.find_elements(By.TAG_NAME, 'time')
 
 
@@ -137,3 +137,13 @@ class SearchTwitter:
 
 
 
+if __name__ == "__main__":
+    scrap = SearchTwitter()
+    scrap.PATH = r'C:\Users\RAFIK\Downloads\chromedriver_win32 (4)/chromedriver'  # PATH where you save driver.exe
+    scrap.keyword = 'bali'
+    scrap.until = '2022-07-20'
+    scrap.since = '2022-07-19'
+    # scrap.tweets = 10
+    scrap.populer = False
+    result = scrap.search()
+    print(len(result))
