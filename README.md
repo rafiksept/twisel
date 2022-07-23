@@ -4,7 +4,8 @@ library python for scraping twitter without API.
 ## Details 
 Twitter Api has limitation about time to get tweet, you can't get older tweets than a week. to get full archive tweet, you must submit approval and it could takes two days. but with selenium, you can build bot to scrap twitter automatically. but the problem is you must understand css and html to make scraping easier. this library is made for those who want to do tweeter scraping fast without API limitation. this library is my first open source project. i know this library have many bug and problem. so, this library also will be updated over time. sorry for my english, i hope i can improve my grammar like me updating this library. thank you :)
 
-## twisel 0.1.11 Update
+## twisel 0.1.12 Update
+- fix css bug selector
 - Add language feature based on ISO 639 alpha-2 or alpha-3 
    - link : https://www.loc.gov/standards/iso639-2/php/code_list.php#:~:text=Note%3A%20ISO%20639%2D2%20is,%22T%22%20(terminology).
 
