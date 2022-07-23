@@ -6,7 +6,7 @@ Twitter Api has limitation about time to get tweet, you can't get older tweets t
 
 ## twisel 0.1.13 Update
 - fix css bug selector
-- fix error failed scraping data
+- fix error when scraping data
 - Add language feature based on ISO 639 alpha-2 or alpha-3 
    - link : https://www.loc.gov/standards/iso639-2/php/code_list.php#:~:text=Note%3A%20ISO%20639%2D2%20is,%22T%22%20(terminology).
 
